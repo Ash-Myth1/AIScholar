@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.env/
+.venv/
+
+# Environment variables
+.env
+*.env
+
+# Chroma DB
+chroma_db/
+.chroma/
+
+# Local document uploads
+*.pdf
+*.txt
+*.csv
+*.docx

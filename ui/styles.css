@@ -1,0 +1,370 @@
+/* Adaptive Color System (Light & Dark Mode Support) */
+:root {
+    --bg-color: #FAFAFA;
+    --surface-color: #FFFFFF;
+    --secondary-surface: #F3F4F6;
+    --border-color: #E5E7EB;
+    --text-primary: #111827;
+    --text-secondary: #6B7280;
+    --accent: #2563EB;
+    --success: #10B981;
+    --success-bg: #D1FAE5;
+    --success-border: #A7F3D0;
+    --danger: #EF4444;
+    --danger-bg: #FEE2E2;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #0F1115;
+        --surface-color: #1C1F26;
+        --secondary-surface: #16181D;
+        --border-color: rgba(255, 255, 255, 0.06);
+        --text-primary: #F9FAFB;
+        --text-secondary: #9CA3AF;
+        --accent: #3B82F6;
+        --success: #34D399;
+        --success-bg: rgba(16, 185, 129, 0.1);
+        --success-border: rgba(16, 185, 129, 0.2);
+        --danger: #F87171;
+        --danger-bg: rgba(239, 68, 68, 0.1);
+    }
+}
+
+/* Global Resets */
+.stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
+    background-color: var(--bg-color) !important;
+}
+
+[data-testid="stSidebar"] {
+    background-color: var(--secondary-surface) !important;
+    border-right: 1px solid var(--border-color) !important;
+}
+
+/* Typography */
+.stApp, p, h1, h2, h3, h4, h5, h6, li, label, span {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-primary);
+}
+
+p {
+    line-height: 1.65;
+}
+
+/* Hero Section */
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 1rem 4rem 1rem;
+    animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-title {
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary) !important;
+    text-align: center;
+}
+.hero-subtitle {
+    font-size: 20px;
+    color: var(--text-secondary) !important;
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+.badge-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.badge {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1.25rem;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+
+/* Suggestions Container */
+.suggestions-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.suggestion-card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    text-align: left;
+}
+.suggestion-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+    border-color: var(--accent);
+}
+.suggestion-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+.suggestion-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* 💎 Premium Chat Input (Composer) */
+[data-testid="stChatInput"] {
+    background-color: var(--surface-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 26px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04) !important;
+    padding: 2px 4px !important; /* Compact feel */
+    transition: all 0.3s ease !important;
+}
+/* Override Streamlit's inner border and focus rings entirely */
+[data-testid="stChatInput"] > div,
+[data-testid="stChatInput"] > div > div,
+[data-testid="stChatInput"] > div > div > div {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    background: transparent !important;
+}
+[data-testid="stChatInput"]:focus-within {
+    border-color: var(--text-secondary) !important; /* Subtle dark border, not neon blue */
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08) !important;
+}
+[data-testid="stChatInput"] textarea {
+    color: var(--text-primary) !important;
+    font-size: 15px !important;
+    padding-left: 12px !important;
+    margin-top: 4px !important;
+}
+[data-testid="stChatInput"] button {
+    background-color: var(--text-primary) !important;
+    border-radius: 50% !important;
+    width: 32px !important;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    margin: 4px !important; /* Perfect centering */
+}
+[data-testid="stChatInput"] button:hover {
+    transform: scale(1.05) !important;
+    background-color: var(--accent) !important;
+}
+[data-testid="stChatInput"] button svg {
+    fill: var(--bg-color) !important;
+    color: var(--bg-color) !important;
+    width: 14px !important;
+    height: 14px !important;
+}
+
+/* Chat Messages */
+/* Constrain max-width for better reading experience */
+div[data-testid="stChatMessageContainer"] {
+    max-width: 880px !important;
+    margin: 0 auto !important;
+}
+[data-testid="stChatMessage"] {
+    border-radius: 16px !important;
+    padding: 1.25rem 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+}
+/* User Message Bubble (Compact & Distinct) */
+div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
+    background-color: var(--secondary-surface) !important;
+    border: 1px solid var(--border-color) !important;
+}
+/* Assistant Message (Lighter & More Open) */
+div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
+    background-color: transparent !important; /* Fully transparent in layout */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+div[data-testid="stChatMessage"] p {
+    color: var(--text-primary) !important;
+}
+
+/* 💎 Custom Native <details> Source References */
+.custom-source-details {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-top: 1.25rem;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+.custom-source-summary {
+    padding: 0.875rem 1rem;
+    background-color: var(--secondary-surface);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text-primary);
+    list-style: none; /* Hide default arrow */
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+.custom-source-summary::-webkit-details-marker {
+    display: none;
+}
+.custom-source-summary:hover {
+    background-color: var(--surface-color);
+}
+.custom-source-details[open] .custom-source-summary {
+    border-bottom: 1px solid var(--border-color);
+}
+.source-summary-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.source-icon {
+    font-size: 16px;
+}
+.chevron-icon {
+    transition: transform 0.2s ease;
+    width: 14px;
+    height: 14px;
+    fill: var(--text-secondary);
+}
+.custom-source-details[open] .chevron-icon {
+    transform: rotate(180deg);
+}
+.source-card {
+    font-size: 14px;
+    color: var(--text-secondary);
+    padding: 1.25rem;
+    background: var(--surface-color);
+    line-height: 1.65;
+}
+.page-badge {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Sidebar Customizations */
+.sidebar-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    margin-top: 1.5rem;
+}
+.success-card {
+    background: var(--success-bg);
+    border: 1px solid var(--success-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+.success-card p {
+    color: var(--success);
+    margin: 0;
+}
+.success-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 0.25rem !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.library-card {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.875rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+.library-card-icon {
+    background: var(--secondary-surface);
+    padding: 6px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+.danger-button-container div[data-testid="stButton"] > button {
+    background-color: transparent !important;
+    border: none !important;
+    color: var(--text-secondary) !important;
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    width: 100% !important;
+    transition: all 0.2s ease !important;
+    text-align: left !important;
+    padding-left: 0 !important;
+}
+.danger-button-container div[data-testid="stButton"] > button:hover {
+    color: var(--danger) !important;
+    background-color: transparent !important;
+}
+
+/* Animations */
+@keyframes fadeSlideUp {
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom File Uploader */
+div[data-testid="stFileUploader"] section {
+    padding: 1.5rem !important;
+}
+div[data-testid="stFileUploaderDropzone"] {
+    background-color: var(--surface-color) !important;
+    border: 1px dashed var(--border-color) !important;
+    border-radius: 12px !important;
+}
+div[data-testid="stFileUploaderDropzone"] button {
+    background-color: var(--surface-color) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+}
+div[data-testid="stFileUploaderDropzone"] button:hover {
+    border-color: var(--text-primary) !important;
+    background-color: var(--secondary-surface) !important;
+}
