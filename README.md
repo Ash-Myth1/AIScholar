@@ -2,7 +2,8 @@
 
 **Offline, Privacy-First RAG for Academic Research**
 
-![AIScholar UI](placeholder_for_image_link.png)
+<img width="1279" height="959" alt="image" src="https://github.com/user-attachments/assets/80c42166-a13e-49f4-80eb-e5db4791092b" />
+
 
 ## Overview
 AIScholar is a completely local, multi-document Retrieval-Augmented Generation (RAG) pipeline designed for academic and professional research. Powered by locally hosted LLMs and Vector Databases, it allows users to chat with their documents in a 100% offline, privacy-first environment. No data leaves your machine.
@@ -13,6 +14,11 @@ AIScholar is a completely local, multi-document Retrieval-Augmented Generation (
 - **History-Aware Retrieval:** Maintains context across chat turns for deep, ongoing research conversations, enabled by LangChain's conversational retrieval chains.
 - **Zero-Hallucination Citations (Metadata Injection):** Anchors responses to source documents. Every document chunk is injected with metadata (`[Source: {source_file} | Page {page}]`), ensuring factual reliability and transparency in the LLM's responses.
 - **Cupertino Minimalist UI:** A beautifully crafted, Apple-inspired Streamlit interface providing a premium user experience with custom CSS injection and sidebar navigation.
+- **Responsive Light/Dark Theme Support:** Automatically adapts to your system preferences without breaking custom styling.
+
+**Cross-Document Synthesis & Citation in Action:**
+<img width="1279" height="959" alt="image" src="https://github.com/user-attachments/assets/1f0b515e-73b2-404e-b0ff-226cd8636b34" />
+
 
 ## Architecture & Tech Stack
 
@@ -69,4 +75,4 @@ Optimized for local deployment. The 4-bit quantized Llama-3 model combined with 
 4. The system will retain conversational history and cite its sources based on the exact page numbers and document names.
 
 ## Author
-Developed by a B.Tech Artificial Intelligence and Data Science student at NIIT University.
+Developed by Ashmit Srivastava a B.Tech Artificial Intelligence and Data Science student at NIIT University.
